@@ -41,3 +41,25 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
     For DELETE requests,
       If successful, return '204 No Content'
       Else return '404 Not Found'
+
+
+
+- Creating the Toy Model
+
+    In the 'toys/models.py' file, we add the model.  Note that Django automatically adds
+      the auto-increment integer primary key column 'id', and maps the column to the
+      'pk' attribute for the model.
+      
+
+    from django.db import models
+
+    class Toy(models.Model):
+        created = models.DateTimeField(auto_now_add=True)
+        name = models.CharField(max_length=150, blank=False, default='')
+        description = models.CharField(max_length=250, blank=True, default='')
+        toy_category = models.CharField(max_length=200, blank=False, default='')
+        release_date = models.DateTimeField()
+        was_included_in_home = models.BooleanField(default=False)
+
+        class Meta:
+            ordering = ('name',)
