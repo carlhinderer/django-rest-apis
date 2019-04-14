@@ -52,3 +52,16 @@ CHAPTER 1 - GETTING STARTED
              # Toys application 
              'toys.apps.ToysConfig', 
          ]
+
+
+
+- Command Line Tools
+
+    The command-line tools used for testing in this book:
+
+      1. cURL
+      2. HTTPie = Python command-line HTTP client
+      3. Postman
+      4. Stoplight = another GUI HTTP client
+      5. iCurlHTTP = iOS HTTP client
+      6. HTTP Request = Android HTTP client

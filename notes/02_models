@@ -1,0 +1,43 @@
+------------------------------------------------------
+CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
+------------------------------------------------------
+
+- Required Fields for Toy Entity
+
+    - Integer Identifier
+    - Name
+    - Description (Optional)
+    - Category
+    - Release Date
+    - Boolean value indicating whether toy has been on homepage at least once
+
+
+
+- HTTP Verbs to Implement
+
+    Verb      Scope                    Semantics                     URL
+    ---------------------------------------------------------------------------
+    GET       Toy                      Single Toy                    /toys/{id}
+    GET       Collection of Toys       All toys, sorted by name      /toys
+    POST      Collection of Toys       Create new toy                /toys
+    PUT       Toy                      Update existing toy           /toys/{id}
+    DELETE    Toy                      Delete existing toy           /toys/{id}
+
+
+    For GET single toy requests, 
+      If successful, return '200 OK' and the requested toy as JSON
+      Else return '404 Not Found'
+
+    For POST requests, 
+      We pass in the JSON for the new toy.
+      If successful, return '201 Created' and the new toy as JSON
+      Else return '400 Bad Request'
+
+    For PUT requests,
+      If successful, return '200 OK' and the updated toy as JSON
+      Else If the necessary data to update the toy wasn't provided, return '400 Bad Request'
+      Else If the toy with the requested id isn't found, return '404 Not Found'
+
+    For DELETE requests,
+      If successful, return '204 No Content'
+      Else return '404 Not Found'
