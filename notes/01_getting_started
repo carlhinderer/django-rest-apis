@@ -1,0 +1,54 @@
+------------------------------------------------------
+CHAPTER 1 - GETTING STARTED
+------------------------------------------------------
+
+- Creating a project and app
+
+    # Command to create new project 'restful01'
+    python environments/web/bin/django-admin.py startproject restful01
+
+    # Command to create a new app 'toys' in the 'restful01' project
+    cd restful01
+    python manage.py startapp toys
+
+
+    Here are the files in the 'toys' app:
+
+    /migrations
+    - __init__.py
+    - admin.py
+    - apps.py
+    - models.py
+    - tests.py
+    - views.py
+
+
+
+- Django Files, Folders, and Configurations
+
+    1. The 'toys/apps.py' creates a 'ToysConfig' class, a subclass of 'django.apps.AppConfig',
+         which represents a Django app and its configuration.  
+
+         from django.apps import AppConfig 
+         class ToysConfig(AppConfig): 
+             name = 'toys'
+
+
+    2. Now, we have to add 'toys.apps.ToysConfig' as one of the installed apps in the 
+         'restful01/settings.py' file that configures settings for the 'restful01' Django project. 
+         In addition, we have to add the 'rest_framework' app to make it possible for us to use 
+         Django REST framework.
+
+         # Update the INSTALLED_APPS setting
+         INSTALLED_APPS = [ 
+             'django.contrib.admin', 
+             'django.contrib.auth', 
+             'django.contrib.contenttypes', 
+             'django.contrib.sessions', 
+             'django.contrib.messages', 
+             'django.contrib.staticfiles', 
+             # Django REST framework 
+             'rest_framework', 
+             # Toys application 
+             'toys.apps.ToysConfig', 
+         ]
