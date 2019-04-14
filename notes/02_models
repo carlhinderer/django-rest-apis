@@ -49,7 +49,7 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
     In the 'toys/models.py' file, we add the model.  Note that Django automatically adds
       the auto-increment integer primary key column 'id', and maps the column to the
       'pk' attribute for the model.
-      
+
 
     from django.db import models
 
@@ -63,3 +63,46 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
 
         class Meta:
             ordering = ('name',)
+
+
+
+- Creating the Initial Migration
+
+    By default, for the time being, we are using SQLite, so we don't have to make any
+      changes to the default ORM configuration.  The automatically generated migration
+      is a subclass of 'django.db.migrations.Migration'.  
+
+
+    # Create the migration
+    cd restful01
+    python manage.py makemigrations toys
+
+
+    # In toys/migrations/0001_initial.py
+    from django.db import migrations, models 
+ 
+    class Migration(migrations.Migration): 
+     
+        initial = True 
+     
+        dependencies = [ 
+        ] 
+     
+        operations = [ 
+            migrations.CreateModel( 
+                name='Toy', 
+                fields=[ 
+                    ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False,     
+                                            verbose_name='ID')), 
+                    ('created', models.DateTimeField(auto_now_add=True)), 
+                    ('name', models.CharField(default='', max_length=150)), 
+                    ('description', models.CharField(blank=True, default='', max_length=250)), 
+                    ('toy_category', models.CharField(default='', max_length=200)), 
+                    ('release_date', models.DateTimeField()), 
+                    ('was_included_in_home', models.BooleanField(default=False)), 
+                ], 
+                options={ 
+                    'ordering': ('name',), 
+                }, 
+            ), 
+        ] 
