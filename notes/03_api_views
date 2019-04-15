@@ -103,3 +103,33 @@ CHAPTER 3 - CREATING API VIEWS
     urlpatterns = [
         url(r'^', include('toys.urls')),
     ]
+
+
+
+- Launching Django Development Server
+
+    # Start development server
+    python manage.py runserver
+
+    # To make our server callable from other machines on our LAN, we specify that
+    #   0.0.0.0 is the IPv4 address that should be used.  Then, the development server
+    #   will listen on every interface on port 8000.  Note that we'll also have to 
+    #   open port 8000 on our firewalls.
+    python manage.py runserver 0.0.0.0:8000
+
+
+
+- Making GET Requests
+
+    # GET request with cURL
+    curl -X GET localhost:8000/toys/
+
+    # Include response headers
+    curl -iX GET localhost:8000/toys
+
+
+    # Use HTTPie in instead for better formatting
+    http :8000/toys/
+
+    # Omit headers from response
+    http -b :8000/toys/
