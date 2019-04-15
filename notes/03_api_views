@@ -92,3 +92,14 @@ CHAPTER 3 - CREATING API VIEWS
         url(r'^toys/$', views.toy_list), 
         url(r'^toys/(?P<pk>[0-9]+)$', views.toy_detail), 
     ] 
+
+
+    And, we also need to update 'restful01/restful01/urls.py'.  This file defines the 
+      root URL configurations, so we must include the patters from 'toys/urls.py'.
+
+    # In restful01/restful01/urls.py
+    from django.conf.urls import url, include 
+
+    urlpatterns = [
+        url(r'^', include('toys.urls')),
+    ]
