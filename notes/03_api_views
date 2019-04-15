@@ -76,3 +76,19 @@ CHAPTER 3 - CREATING API VIEWS
     Here, we use the '@csrf_exempt' decorator in 2 functions that ensure the view sets a
       CSRF token.  We're just doing this to make testing easier, since our service is
       not production ready for now.
+
+
+
+- Routing URLs to Views and Functions
+
+    Now, we need to create a 'urls.py' file in the toys folder which matches regexes to
+      functions defined in the 'views.py' file.
+
+    # In toys/urls.py
+    from django.conf.urls import url 
+    from toys import views 
+ 
+    urlpatterns = [ 
+        url(r'^toys/$', views.toy_list), 
+        url(r'^toys/(?P<pk>[0-9]+)$', views.toy_detail), 
+    ] 
