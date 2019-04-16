@@ -133,3 +133,28 @@ CHAPTER 3 - CREATING API VIEWS
 
     # Omit headers from response
     http -b :8000/toys/
+
+
+
+- Making POST Requests
+
+    # cURL POST request
+    curl -iX POST -H "Content-Type: application/json" -d '{"name":"PvZ   
+    2 puzzle", "description":"Plants vs Zombies 2 puzzle",    
+    "toy_category":"Puzzle", "was_included_in_home": "false", 
+    "release_date": "2017-10-08T01:01:00.776594Z"}' 
+    localhost:8000/toys/
+
+    # Equivalent HTTPie request
+    http POST :8000/toys/ name="PvZ 2 puzzle" description="Plants vs    
+    Zombies 2 puzzle" toy_category="Puzzle" was_included_in_home=false 
+    release_date="2017-10-08T01:01:00.776594Z"
+
+    # Either of these will send this json
+    { 
+        "name": "PvZ 2 puzzle",  
+        "description":"Plants vs Zombies 2 puzzle", 
+        "toy_category":"Puzzle", 
+        "was_included_in_home": "false", 
+        "release_date": "2017-10-08T01:01:00.776594Z" 
+    }
