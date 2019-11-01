@@ -2,10 +2,59 @@
 CHAPTER 1 - GETTING STARTED
 ------------------------------------------------------
 
+- Creating and Activating a Virtual Environment
+
+    - First, we create the environment
+
+        # Create new virtual environment
+        $ python3 -m venv ~/environments/hillar
+
+  
+    - This is the directory structure of the newly created environment:
+
+      /01
+        /bin                       # Location where executables will be copied
+          > activate
+          > activate.csh
+          > activate.fish
+          > easy-install
+          > easy_install-3.6
+          > pip
+          > pip3
+          > pip3.6
+          > python
+          > python3
+        /include
+        /lib
+          /python3.6
+            /site-packages          # Location of 3rd party packages we install
+          > pyvenv.cfg
+
+
+      - To use the environment:
+
+          # Activate the environment
+          $ source /~/environments/hillar/bin/activate
+
+          # Deactivate the environment
+          $ deactivate
+
+
+
+- Installing Django
+
+    # Activate new environment first, then install django
+    $ pip install django
+
+    # Install rest framework
+    $ pip install djangorestframework
+
+
+
 - Creating a project and app
 
     # Command to create new project 'restful01'
-    python environments/web/bin/django-admin.py startproject restful01
+    python environments/hillar/bin/django-admin.py startproject restful01
 
     # Command to create a new app 'toys' in the 'restful01' project
     cd restful01
@@ -60,8 +109,29 @@ CHAPTER 1 - GETTING STARTED
     The command-line tools used for testing in this book:
 
       1. cURL
-      2. HTTPie = Python command-line HTTP client
+           - Used to easily compose and send HTTP requests and check their responses
+           - Already installed on Linux machines
+
+      2. HTTPie
+           - Python command-line HTTP client
+
+           # Install HTTPie
+           $ pip install --upgrade httpie
+
       3. Postman
-      4. Stoplight = another GUI HTTP client
-      5. iCurlHTTP = iOS HTTP client
-      6. HTTP Request = Android HTTP client
+           - GUI client for composing HTTP requests
+
+           # Install postman
+           $ sudo snap install postman
+
+           # Run postman
+           $ postman
+
+      4. Stoplight
+           - generates code to make requests in several languages
+
+      5. iCurlHTTP
+           - iOS HTTP client
+
+      6. HTTP Request
+           - Android HTTP client
