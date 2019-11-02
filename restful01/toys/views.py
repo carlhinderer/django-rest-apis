@@ -21,7 +21,6 @@ def toy_list(request):
         toys = Toy.objects.all() 
         toys_serializer = ToySerializer(toys, many=True) 
         return JSONResponse(toys_serializer.data) 
- 
     elif request.method == 'POST': 
         toy_data = JSONParser().parse(request) 
         toy_serializer = ToySerializer(data=toy_data) 
@@ -52,4 +51,4 @@ def toy_detail(request, pk):
  
     elif request.method == 'DELETE': 
         toy.delete() 
-        return HttpResponse(status=status.HTTP_204_NO_CONTENT) 
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
