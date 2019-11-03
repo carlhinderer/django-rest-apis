@@ -170,4 +170,61 @@ CHAPTER 3 - CREATING API VIEWS
 
 
 
-- 
+- Making HTTP PUT Requests
+
+    - Example of Successful Request
+
+        # httpie Request
+        http PUT :8000/toys/4 name="PvZ 3 puzzle" 
+                              description="Plants vs Zombies 3 puzzle" 
+                              toy_category="Puzzles & Games" 
+                              was_included_in_home=false release_date="2017-10-08T01:01:00.776594Z"
+    
+        # Curl Request
+        curl -iX PUT -H "Content-Type: application/json" 
+                     -d '{"name":"PvZ 3 puzzle", 
+                          "description":"Plants vs Zombies 3 puzzle", 
+                          "toy_category":"Puzzles & Games", 
+                          "was_included_in_home": "false", 
+                          "release_date": "2017-10-08T01:01:00.776594Z"}' 
+                     localhost:8000/toys/4
+
+        # Response to either
+            HTTP/1.0 200 OK
+        Content-Length: 180
+        Content-Type: application/json
+        Date: Tue, 10 Oct 2017 17:06:43 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        X-Frame-Options: SAMEORIGIN
+        
+        {
+            "description": "Plants vs Zombies 3 puzzle", 
+            "name": "PvZ 3 puzzle", 
+            "pk": 4, 
+            "release_date": "2017-10-08T01:01:00.776594Z", 
+            "toy_category": "Puzzles & Games", 
+            "was_included_in_home": false
+        }
+
+
+    - Invalid Requests
+
+        # Return response if validation failed
+        HTTP/1.0 400 Bad Request
+        Content-Length: 129
+        Content-Type: application/json
+        Date: Tue, 10 Oct 2017 17:23:46 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        X-Frame-Options: SAMEORIGIN
+        
+        {
+            "description": [
+                "This field is required."
+            ], 
+            "release_date": [
+                "This field is required."
+            ], 
+            "toy_category": [
+                "This field is required."
+            ]
+        }
