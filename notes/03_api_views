@@ -228,3 +228,23 @@ CHAPTER 3 - CREATING API VIEWS
                 "This field is required."
             ]
         }
+
+
+
+- Making HTTP Delete Requests
+
+    - Successful DELETE Requests
+
+        # Httpie
+        http DELETE :8000/toys/4
+
+        # Curl
+        curl -iX DELETE localhost:8000/toys/4
+
+        # Response to successful deletion
+        HTTP/1.0 204 No Content
+        Content-Length: 0
+        Content-Type: text/html; charset=utf-8
+        Date: Tue, 10 Oct 2017 17:45:40 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        X-Frame-Options: SAMEORIGIN
