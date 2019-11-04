@@ -168,3 +168,58 @@ CHAPTER 4 - USING GENERALIZED BEHAVIOR FROM THE APIVIEW CLASS
 
         # New serialization
         toy_serializer = ToySerializer(data=request.data)
+
+
+
+- Taking Advantage of Content Negotiation Classes
+
+    - The 'APIView' class defines default settings for each view that we can override by 
+        specifying the desired values in the settings module ('restful01/settings.py').  It is
+        also possible to override these class attributes in subclasses.
+
+      In this case, we won't change any of the defaults, but let's look at one of them:
+
+        # Value of DEFAULT_PARSER_CLASSES setting
+        ( 
+            'rest_framework.parsers.JSONParser', 
+            'rest_framework.parsers.FormParser', 
+            'rest_framework.parsers.MultiPartParser' 
+        ) 
+
+
+    - When we use the '@api_view' decorator, the RESTful web service will be able to handle any
+        of these content types:
+
+        'application/json'                   # Parsed by 'rest_framework.parsers.JSONParser'
+        'application/x-www-form-urlencoded'  # Parsed by 'rest_framework.parsers.FormParser'
+        'multipart/form-data'                # Parsed by 'rest_framework.parsers.MultiPartParser'
+
+
+    - When we access the 'request.data' attribute in the functions, the Django REST framework
+        examines the value of the 'Content-Type' header in the incoming request and determines
+        the appropriate parser to parse the request content.
+
+
+    - The default renderer classes is similar:
+
+        # Value of DEFAULT_RENDERER_CLASSES
+        ( 
+            'rest_framework.renderers.JSONRenderer', 
+            'rest_framework.renderers.BrowsableAPIRenderer', 
+        ) 
+
+      We can render these content types:
+
+        'application/json'                 # Rendered by 'rest_framework.response.JSONRenderer'
+        'text/html'                        # Rendered by 'rest_framework.response.BrowsableAPIRenderer'
+
+
+
+    - By default, the value for 'DEFAULT_CONTENT_NEGOTIATION_CLASS' is 
+        'rest_framework.negotiation.DefaultContentNegotiation'.  When we use the decorator, the web
+        service will use the content negotiator to select the appropriate renderer for the response,
+        based on the incoming request.
+
+      That way, when a request specifies that it will accept 'text/html', the content negotiation
+        class will select the 'BrowsableAPIRenderer' to render the response and generate 'text/html'
+        instead of 'application/json'.
