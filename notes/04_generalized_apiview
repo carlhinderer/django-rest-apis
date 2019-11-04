@@ -1,0 +1,63 @@
+----------------------------------------------------------------
+CHAPTER 4 - USING GENERALIZED BEHAVIOR FROM THE APIVIEW CLASS
+----------------------------------------------------------------
+
+- Taking Advantage of Model Serializers
+
+    - We can use leverage the fact that the 'rest_framework.serializers.ModelSerializer'
+        automatically populates default vales and default validators, along with providing
+        default implementations for the 'create' and 'update' methods.
+
+      We'll subclass our serializer from this class instead of 'serializers.Serializer' to 
+        get this behavior.
+
+
+        # restful01/toys/serializers.py
+        from rest_framework import serializers
+        from toys.models import Toy
+
+        class ToySerializer(serializers.ModelSerializer):
+            class Meta:
+                model = Toy
+                fields = ('id',
+                          'name',
+                          'description',
+                          'release_date',
+                          'toy_category',
+                          'was_included_in_home')
+
+
+
+    - The 'model' attribute specifies the model class related to the serializer.
+      The 'fields' attribute specifies the list of fields we want to be included in serialization.
+
+
+
+- Understanding Accepted and Returned Content Types
+
+    - So far, our web service has been using JSON for the response body.  Our existing 
+        ApiView class declares a JSONResponse and 2 function-based views.  
+
+      Those functions:
+        - return a JSONResponse when it is necessary to return a JSON response
+        - return an HTTPResponse when the response is just a HTTP status code
+
+
+    - Right now, even if we send a request to our web services with 'Accept: application/html',
+        they would still return results with 'Content-Type: application/json'.  We don't provide
+        support for other formats yet.
+
+        # Returns json response
+        http :8000/toys/ Accept:application/json
+        curl -H "Accept: application/json" -iX GET localhost:8000/toys/
+
+        # Still returns json response
+        http :8000/toys/ Accept:text/html
+        curl -H "Accept: text/html" -iX GET localhost:8000/toys/
+
+        # Either way the response has this header
+        Content-Type: application/json
+
+
+
+- 
