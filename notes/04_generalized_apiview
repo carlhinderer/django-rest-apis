@@ -223,3 +223,153 @@ CHAPTER 4 - USING GENERALIZED BEHAVIOR FROM THE APIVIEW CLASS
       That way, when a request specifies that it will accept 'text/html', the content negotiation
         class will select the 'BrowsableAPIRenderer' to render the response and generate 'text/html'
         instead of 'application/json'.
+
+
+
+- Making Supported HTTP OPTIONS Requests
+
+    - Now that we are using 'api_view', our OPTIONS requests are supported.
+
+        # Toys list OPTIONS request
+        $ http OPTIONS :8000/toys/
+        $ curl -iX OPTIONS localhost:8000/toys/
+
+        HTTP/1.0 200 OK
+        Allow: POST, OPTIONS, GET
+        Content-Length: 167
+        Content-Type: application/json
+        Date: Mon, 16 Oct 2017 04:28:32 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        Vary: Accept, Cookie
+        X-Frame-Options: SAMEORIGIN
+        
+        {
+            "description": "", 
+            "name": "Toy List", 
+            "parses": [
+                "application/json", 
+                "application/x-www-form-urlencoded", 
+                "multipart/form-data"
+            ], 
+            "renders": [
+                "application/json", 
+                "text/html"
+            ]
+        }
+ 
+
+        # Toys detail OPTIONS request
+        $ http OPTIONS :8000/toys/2
+        $ curl -iX OPTIONS localhost:8000/toys/2
+
+        HTTP/1.0 200 OK
+        Allow: DELETE, PUT, OPTIONS, GET
+        Content-Length: 169
+        Content-Type: application/json
+        Date: Mon, 16 Oct 2017 04:30:04 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        Vary: Accept, Cookie
+        X-Frame-Options: SAMEORIGIN
+        
+        {
+            "description": "", 
+            "name": "Toy Detail", 
+            "parses": [
+                "application/json", 
+                "application/x-www-form-urlencoded", 
+                "multipart/form-data"
+            ], 
+            "renders": [
+                "application/json", 
+                "text/html"
+            ]
+        }
+  
+
+
+- Working with Different Content Types
+
+    - When we tested POST and PUT requests, we had to specify the content type as 
+        'application/json' to indicate to curl that the request data is json.  We had to add
+        that because curl's default content type is 'application/x-www-form-urlencoded'.
+
+        # Test POST request
+        $ curl -iX POST -H "Content-Type: application/json" ...
+
+
+    - Now, our service goes beyond json and can also parse 'application/x-www-form-urlencoded'
+        and 'multipart/form-data'.  We can pass in form data and our requests will be handled.
+
+        # HTTPie request with form data (-f for form)
+        $ http -f POST :8000/toys/ name="Ken in Rome" 
+                                   description="Ken loves Rome" 
+                                   toy_category="Dolls" 
+                                   was_included_in_home=false 
+                                   release_date="2017-10-09T12:11:37.090335Z"
+
+        # curl request with form data (don't have to send content type)
+        $ curl -iX POST -d '{"name":"Ken in Rome", 
+                             "description": "Ken loves Rome", 
+                             "toy_category":"Dolls", 
+                             "was_included_in_home": "false", 
+                             "release_date": "2017-10-09T12:11:37.090335Z"}' 
+                        localhost:8000/toys/ 
+
+
+    - The previous request will compose and send the following HTTP request:
+
+        POST http://localhost:8000/toys/
+
+        Content-Type: 'application/x-www-form-urlencoded'
+
+        Data: 
+        name=Ken+in+Rome&
+        description=Ken+loves+Rome&
+        toy_category=Dolls&
+        was_included_in_home=false&
+        release_date=2017-10-09T12%3A11%3A37.090335Z
+
+
+        # Response (Still JSON)
+        HTTP/1.0 201 Created
+        Allow: GET, OPTIONS, POST
+        Content-Length: 157
+        Content-Type: application/json
+        Date: Mon, 16 Oct 2017 04:40:02 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        Vary: Accept, Cookie
+        X-Frame-Options: SAMEORIGIN
+        {
+            "description": "Ken loves Rome",
+            "id": 6,
+            "name": "Ken in Rome",
+            "release_date": "2017-10-09T12:11:37.090335Z",
+            "toy_category": "Dolls",
+            "was_included_in_home": false
+        }
+
+
+
+- Sending HTTP Requests with Unsupported HTTP Verbs
+
+    - Now, we will once again try sending a request with an unsupported verb.  We will still get
+        a 405 error.
+
+        # Send unsupported verb request
+        $ http PATCH :8000/toys/
+        $ curl -iX PATCH localhost:8000/toys/
+
+
+        # Response
+        HTTP/1.0 405 Method Not Allowed
+        Allow: GET, OPTIONS, POST
+        Content-Length: 42
+        Content-Type: application/json
+        Date: Mon, 16 Oct 2017 04:41:35 GMT
+        Server: WSGIServer/0.2 CPython/3.6.2
+        Vary: Accept, Cookie
+        X-Frame-Options: SAMEORIGIN
+        
+        {
+            "detail": "Method \"PATCH\" not allowed."
+        }
