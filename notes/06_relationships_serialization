@@ -1,0 +1,89 @@
+--------------------------------------------------------------
+CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
+--------------------------------------------------------------
+
+- Defining Requirements for a Complex RESTful Web Service
+
+    - We are going to define a RESTful web service for registering components for drones that are
+        grouped into drone categories.  These are the resources we will need:
+
+        1. Drone categories (DroneCategory model)
+        2. Drones (Drone model)
+        3. Pilots (Pilot model)
+        4. Competitions (Competition model)
+
+
+        DroneCategory [name]
+        Drone [DroneCategory FK, name, manufacturing_date, has_competed, created_date]
+        Pilot [name, gender, number_of_races, created_date]
+        Competition [Pilot FK, Drone FK, distance(ft), date]
+
+
+    - Here are the operations we will support:
+
+        HTTP verb       Scope                               Semantics
+        ---------------------------------------------------------------------------------------------------------------------------
+        GET             Drone category                      Retrieve a single drone category. The drone category must include a 
+                                                              list of URLs for each drone resource that belongs to the drone 
+                                                              category.
+
+        GET             Collection of drone categories      Retrieve all the stored drone categories in the collection, sorted by 
+                                                              their name in ascending order. Each drone category must include a list 
+                                                              of URLs for each drone resource that belongs to the drone category.
+
+        POST            Collection of drone categories      Create a new drone category in the collection.
+
+        PUT             Drone category                      Update an existing drone category.
+
+        PATCH           Drone category                      Update one or more fields of an existing drone category.
+
+        DELETE          Drone category                      Delete an existing drone category.
+
+        GET             Drone                               Retrieve a single drone. The drone must include its drone category 
+                                                              description.
+
+        GET             Collection of drones                Retrieve all the stored drones in the collection, sorted by their name in 
+                                                              ascending order. Each drone must include its drone category description.
+
+        POST            Collection of drones                Create a new drone in the collection.
+
+        PUT             Drone                               Update an existing drone.
+
+        PATCH           Drone                               Update one or more fields of an existing drone.
+
+        DELETE          Drone                               Delete an existing drone.
+
+        GET             Pilot                               Retrieve a single pilot. The pilot must include a list of the registered 
+                                                              competitions, sorted by distance in descending order. The list must include 
+                                                              all the details for the competition in which the pilots and his related 
+                                                              drone participated.
+
+        GET             Collection of pilots                Retrieve all the stored pilots in the collection, sorted by their name in 
+                                                              ascending order. Each pilot must include a list of the registered 
+                                                              competitions, sorted by distance in descending order. The list must include all 
+                                                              the details for the competition in which the pilot and his related drone 
+                                                              participated.
+
+        POST            Collection of pilots                Create a new pilot in the collection.
+
+        PUT             Pilot                               Update an existing pilot.
+
+        PATCH           Pilot                               Update one or more fields of an existing pilot.
+
+        DELETE          Pilot                               Delete an existing pilot.
+
+        GET             Competition                         Retrieve a single competition. The competition must include the pilot's name that 
+                                                              made the drone reach a specific distance and the drone's name.
+
+        GET             Collection of competitions          Retrieve all the stored competitions in the collection, sorted by distance in 
+                                                              descending order. Each competition must include the pilot's name that made the 
+                                                              drone reach a specific distance and the drone's name.
+
+        POST            Collection of competitions          Create a new competition in the collection. The competition must be related to 
+                                                              an existing pilot and an existing drone.
+
+        PUT             Competition                         Update an existing competition.
+
+        PATCH           Competition                         Update one or more fields of an existing competition.
+
+        DELETE          Competition                         Delete an existing competition.
