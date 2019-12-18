@@ -222,9 +222,55 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
                 ordering = ('-distance_in_feet',)
 
 
-- Installing PostgreSQL
 
 - Running Migrations that Generate Relationships
+
+    - We're going to switch to using Postgres instead of SQLite.
+
+        # Create a new Postgres database
+        $ sudo -u postgres createdb drones
+
+
+        # Create database user and add 
+        $ psql
+
+        >>> CREATE ROLE username WITH LOGIN PASSWORD 'password';
+        >>> GRANT ALL PRIVILEGES ON DATABASE drones TO username;
+        >>> ALTER USER username CREATEDB;
+        >>> \q
+
+
+    - We need to update the settings.py:
+
+        DATABASES = { 
+            'default': { 
+                'ENGINE': 'django.db.backends.postgresql', 
+                'NAME': 'drones', 
+                'USER': 'username', 
+                'PASSWORD': 'password', 
+                'HOST': '127.0.0.1', 
+                'PORT': '5432',       # 5432 is default
+            } 
+        }
+
+
+    - Remove the toys urls from the 'restful01/urls.py' so migrations won't be run:
+
+        urlpatterns = [
+        ]
+
+
+    - Install psycopg2:
+
+        $ pip install psycopg2
+
+
+    - Create and run migrations:
+
+        $ python manage.py makemigrations drones
+        $ python manage.py migrate
+
+
 
 - Analyzing the Database
 
