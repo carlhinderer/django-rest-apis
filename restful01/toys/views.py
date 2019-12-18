@@ -1,9 +1,11 @@
 from django.shortcuts import render 
+
 from rest_framework import status 
-from toys.models import Toy 
-from toys.serializers import ToySerializer
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
+
+from toys.models import Toy 
+from toys.serializers import ToySerializer
  
  
 @api_view(['GET', 'POST']) 

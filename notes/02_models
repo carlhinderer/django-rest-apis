@@ -28,6 +28,9 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
       If successful, return '200 OK' and the requested toy as JSON
       Else return '404 Not Found'
 
+    For GET all toy requests,
+      If successful, return '200 OK' and the list of toys as JSON
+
     For POST requests, 
       We pass in the JSON for the new toy.
       If successful, return '201 Created' and the new toy as JSON
@@ -74,8 +77,8 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
 
 
     # Create the migration
-    cd restful01
-    python manage.py makemigrations toys
+    $ cd restful01
+    $ python manage.py makemigrations toys
 
 
     # In toys/migrations/0001_initial.py
@@ -213,8 +216,8 @@ CHAPTER 2 - MODELS, MIGRATIONS, AND SERIALIZATION
 - Working with the Django Shell
 
     # Launch the Django Python shell
-    cd restful01
-    python manage.py shell
+    $ cd restful01
+    $ python manage.py shell
 
 
     # Imports
