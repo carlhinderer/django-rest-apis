@@ -407,6 +407,38 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
                     'competitions') 
 
 
+    - Finally, we create a 'PilotCompetitionSerializer' class to model the Pilot as master and
+        Competition as detail relationship.
+
+        class PilotCompetitionSerializer(serializers.ModelSerializer): 
+            # Display the pilot's name 
+            pilot = serializers.SlugRelatedField(queryset=Pilot.objects.all(), slug_field='name') 
+            # Display the drone's name 
+            drone = serializers.SlugRelatedField(queryset=Drone.objects.all(), slug_field='name') 
+         
+            class Meta: 
+                model = Competition 
+                fields = ( 
+                    'url', 
+                    'pk', 
+                    'distance_in_feet', 
+                    'distance_achievement_date', 
+                    'pilot', 
+                    'drone')
+
+
+
+- Full List of Serializers
+
+    Serializer class name         Superclass                     Related model
+    ------------------------------------------------------------------------------------------------
+    DroneCategorySerializer       HyperlinkedModelSerializer     DroneCategory
+    DroneSerializer               HyperlinkedModelSerializer     Drone
+    CompetitionSerializer         HyperlinkedModelSerializer     Competition
+    PilotSerializer               HyperlinkedModelSerializer     Pilot
+    PilotCompetitionSerializer    ModelSerializer                Competition
+
+
 
 - Working with Class-Based Views
 
