@@ -1,0 +1,35 @@
+-----------------------------------------------------
+CHAPTER 5 - THE BROWSABLE API FEATURE
+-----------------------------------------------------
+
+- Rendering Text and HTML
+
+    - The browsable API is a Django REST Framework feature that generates interactive and 
+        human-friendly HTML for resources.  It is 'browsable', because we can use a
+        web browser to to navigate through the API.
+
+
+    - Here, we test the API:
+
+        # Retrieve toys in html (-v for verbose)
+        $ http -v :8000/toys/ "Accept: text/html"
+        $ curl -vH "Accept: text/html" -iX GET localhost:8000/toys/
+    
+    
+        # These commands generate a request with these headers
+        GET /toys/ HTTP/1.1
+        Accept: text/html
+        Accept-Encoding: gzip, deflate
+        Connection: keep-alive
+        Host: localhost:8000
+        User-Agent: HTTPie/0.9.3
+    
+    
+        # The response includes this header
+        Content-Type: text/html; charset=utf-8
+
+
+    - By default, the BrowsableAPIRenderer class uses the Bootstrap frontend component library.
+
+
+    - We can make GET, POST, PUT, DELETE, and OPTIONS requests from the browsable API.
