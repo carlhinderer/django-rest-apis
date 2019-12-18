@@ -362,10 +362,49 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
                     'inserted_timestamp') 
 
 
-    - A 'SlugRelatedField' is a read-write field that represents the target of the relationship by a unique slug
-        attribute.  The browsable API has to display the possible options for the related drone category in a
-        dropdown field in a form, and Django will use the expression in the 'queryset' attribute to populate the
-        values in it.
+        - A 'SlugRelatedField' is a read-write field that represents the target of the relationship by a unique 
+            slug attribute.  The browsable API has to display the possible options for the related drone category 
+            in a dropdown field in a form, and Django will use the expression in the 'queryset' attribute to 
+            populate the values in it.
+
+        - Note that we don't want to include the 'pk' in 'fields' in the Meta class.
+
+
+    - Here is the serializer for Competition:
+
+        class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
+            # Display all the details for the related drone
+            drone = DroneSerializer()
+
+            class Meta:
+                model = Competition
+                fields = (
+                    'url',
+                    'pk',
+                    'distance_in_feet',
+                    'distance_achievement_date',
+                    'drone')
+
+
+    - Here is the serializer for Pilot:
+
+        class PilotSerializer(serializers.HyperlinkedModelSerializer): 
+            competitions = CompetitionSerializer(many=True, read_only=True) 
+            gender = serializers.ChoiceField(choices=Pilot.GENDER_CHOICES) 
+            gender_description = serializers.CharField( 
+                source='get_gender_display',  
+                read_only=True) 
+         
+            class Meta: 
+                model = Pilot 
+                fields = ( 
+                    'url', 
+                    'name', 
+                    'gender', 
+                    'gender_description', 
+                    'races_count', 
+                    'inserted_timestamp',
+                    'competitions') 
 
 
 
