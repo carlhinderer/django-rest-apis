@@ -274,8 +274,73 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 - Analyzing the Database
 
+    # List the tables in the database
+    $ psql --username=username --dbname=drones --command="\dt"
+
+     Schema |            Name            | Type  |  Owner   
+    --------+----------------------------+-------+----------
+     public | auth_group                 | table | username
+     public | auth_group_permissions     | table | username
+     public | auth_permission            | table | username
+     public | auth_user                  | table | username
+     public | auth_user_groups           | table | username
+     public | auth_user_user_permissions | table | username
+     public | django_admin_log           | table | username
+     public | django_content_type        | table | username
+     public | django_migrations          | table | username
+     public | django_session             | table | username
+     public | drones_competition         | table | username
+     public | drones_drone               | table | username
+     public | drones_dronecategory       | table | username
+     public | drones_pilot               | table | username
+    (14 rows)
+
+
+    # List the contents of each of our tables
+    $ psql --username=username --dbname=drones --command="SELECT * FROM drones_dronecategory;"
+    $ psql --username=username --dbname=drones --command="SELECT * FROM drones_drone;"
+    $ psql --username=username --dbname=drones --command="SELECT * FROM drones_pilot;"
+    $ psql --username=username --dbname=drones --command="SELECT * FROM drones_competition;"
+
+
 
 - Configuring Serialization and Deserialization with Relationships
+
+    - The 'HyperlinkedModelSerializer' is a type of ModelSerializer that uses hyperlinked relationships
+        instead of primary key relationships.  It represents the relationship to other model instances
+        with hyperlinks.
+
+        # drones/serializers.py
+        from rest_framework import serializers 
+
+        from drones.models import DroneCategory 
+        from drones.models import Drone 
+        from drones.models import Pilot 
+        from drones.models import Competition 
+        import drones.views 
+         
+         
+        class DroneCategorySerializer(serializers.HyperlinkedModelSerializer): 
+            drones = serializers.HyperlinkedRelatedField( 
+                many=True, 
+                read_only=True, 
+                view_name='drone-detail') 
+         
+            class Meta: 
+                model = DroneCategory 
+                fields = ( 
+                    'url', 
+                    'pk', 
+                    'name', 
+                    'drones')
+
+
+    - The many=True, read_only=True indicates that the relationship is 1:M and read-only.  
+
+    - The view_name='drone-detail' indicates to the browsable API to use the drone detail view to render
+        the hyperlink when it is clicked.
+
+
 
 - Defining Hyperlinks with serializers.HyperlinkedModelSerializer
 
@@ -287,4 +352,4 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 - Working with Routing and Endpoints
 
-- Making Requests that Interact with Resources that Have Relationships
+- Making Requests that Interact with Resources that have Relationships
