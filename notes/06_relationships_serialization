@@ -87,3 +87,60 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
         PATCH           Competition                         Update one or more fields of an existing competition.
 
         DELETE          Competition                         Delete an existing competition.
+
+
+
+    - Here are the actual URIs we need to support:
+
+        Scope                                     URI
+        ------------------------------------------------------------------------
+        Collection of drone categories            /drone-categories/
+
+        Drone category                            /drone-category/{id}
+
+        Collection of drones                      /drones/
+
+        Drone                                     /drone/{id}
+
+        Collection of pilots                      /pilots/
+
+        Pilot                                     /pilot/{id}
+
+        Collection of competitions                /competitions/
+
+        Competition                               /competition/{id}
+
+
+
+    - Note that the HTTP PUT method is used to replace an entire resource, and the HTTP PATCH method is used
+        to update one or more fields of an existing resource.
+
+
+
+- Creating a New App with Django
+
+- Configuring a New Web Service
+
+- Defining Many-to-One Relationships with models.ForeignKey
+
+
+- Installing PostgreSQL
+
+- Running Migrations that Generate Relationships
+
+- Analyzing the Database
+
+
+- Configuring Serialization and Deserialization with Relationships
+
+- Defining Hyperlinks with serializers.HyperlinkedModelSerializer
+
+- Working with Class-Based Views
+
+- Taking Advantage of Generic Classes and Viewsets
+
+- Generalizing and Mixing Behavior
+
+- Working with Routing and Endpoints
+
+- Making Requests that Interact with Resources that Have Relationships
