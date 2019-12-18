@@ -122,9 +122,32 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
     # In restful01 project directory
     $ python manage.py startapp drones
 
-    
+
 
 - Configuring a New Web Service
+
+    # drones/apps.py
+    from django.apps import AppConfig 
+
+    class DronesConfig(AppConfig): 
+        name = 'drones'
+
+
+    # Add to restful01/settings.py
+    INSTALLED_APPS = [ 
+        'django.contrib.admin', 
+        'django.contrib.auth', 
+        'django.contrib.contenttypes', 
+        'django.contrib.sessions', 
+        'django.contrib.messages', 
+        'django.contrib.staticfiles', 
+        # Django REST framework 
+        'rest_framework', 
+        # Drones application 
+        'drones.apps.DronesConfig', 
+    ] 
+
+
 
 - Defining Many-to-One Relationships with models.ForeignKey
 
