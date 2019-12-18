@@ -525,8 +525,32 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 
 
-- Generalizing and Mixing Behavior
-
 - Working with Routing and Endpoints
+
+    - We want to create an endpoint for the root of our web service to make it easy to browse the
+        resource collections provided by our web service with the browsable API.
+
+
+    - We add this to the views:
+
+        # drones/views.py
+        class ApiRoot(generics.GenericAPIView): 
+            name = 'api-root' 
+            def get(self, request, *args, **kwargs): 
+                return Response({ 
+                    'drone-categories': reverse(DroneCategoryList.name, request=request), 
+                    'drones': reverse(DroneList.name, request=request), 
+                    'pilots': reverse(PilotList.name, request=request), 
+                    'competitions': reverse(CompetitionList.name, request=request) 
+                    }) 
+
+
+    - The 'ApiRoot' class defines the 'get' method, which returns a Response object with key/value
+        pairs describing each view and its url.
+
+
+
+
+
 
 - Making Requests that Interact with Resources that have Relationships
