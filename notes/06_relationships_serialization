@@ -344,6 +344,31 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 - Defining Hyperlinks with serializers.HyperlinkedModelSerializer
 
+    - Next, we'll add the serializer for Drone:
+
+        # drones/serializer.py
+        class DroneSerializer(serializers.HyperlinkedModelSerializer): 
+            # Display the category name 
+            drone_category = serializers.SlugRelatedField(queryset=DroneCategory.objects.all(), slug_field='name') 
+         
+            class Meta: 
+                model = Drone 
+                fields = ( 
+                    'url', 
+                    'name', 
+                    'drone_category', 
+                    'manufacturing_date', 
+                    'has_it_competed', 
+                    'inserted_timestamp') 
+
+
+    - A 'SlugRelatedField' is a read-write field that represents the target of the relationship by a unique slug
+        attribute.  The browsable API has to display the possible options for the related drone category in a
+        dropdown field in a form, and Django will use the expression in the 'queryset' attribute to populate the
+        values in it.
+
+
+
 - Working with Class-Based Views
 
 - Taking Advantage of Generic Classes and Viewsets
