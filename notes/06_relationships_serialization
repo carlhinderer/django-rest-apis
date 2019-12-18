@@ -119,6 +119,11 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 - Creating a New App with Django
 
+    # In restful01 project directory
+    $ python manage.py startapp drones
+
+    
+
 - Configuring a New Web Service
 
 - Defining Many-to-One Relationships with models.ForeignKey
