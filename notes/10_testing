@@ -1,0 +1,13 @@
+------------------------------------------------------------
+CHAPTER 10 - AUTOMATING TESTS
+------------------------------------------------------------
+
+- Unit Testing with pytest
+
+- Writing Unit Tests for a RESTful Web Service
+
+- Discovering and Running Unit Tests with pytest
+
+- Writing New Unit Tests to Improve the Tests' Code Coverage
+
+- Running Unit Tests Again with pytest

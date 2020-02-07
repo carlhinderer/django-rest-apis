@@ -1,0 +1,16 @@
+--------------------------------------------------------------------
+CHAPTER 9 - THROTTLING RULES & VERSION MANAGEMENT
+--------------------------------------------------------------------
+
+- The Importance of Throttling Rules
+
+- Learning the Purpose of Different Throttling Classes in Django REST Framework
+
+- Running Tests to Check that Throttling Policies Work as Expected
+
+
+- Understanding Versioning Classes
+
+- Configuring a Versioning Scheme
+
+- Running Tests to Check that Versioning Works as Expected

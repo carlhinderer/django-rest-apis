@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------------
+CHAPTER 7 - USING CONSTRAINTS, FILTERING, SEARCHING, ORDERING, & PAGINATION
+------------------------------------------------------------------------------------------
+
+- Browsing the API with Resources and Relationships
+
+
+- Defining Unique Constraints
+
+- Working with Unique Constraints
+
+
+- Understanding Pagination
+
+- Configuring Pagination Classes
+
+- Making Requests that Paginate Results
+
+- Working with Customized Paginated Results
+
+- Making Requests that Use Customized Paginated Results
+
+
+- Configuring Filter Backend Classes
+
+- Adding Searching, Filtering, and Ordering
+
+- Working with Different Types of Django Filters
+
+- Making Requests that Filter Results
+
+- Composing Requests that Filter and Order Results
+
+- Making Requests that Perform Starts with Searches
+
+- Using the browsable API to Test Pagination, Filtering, Searching, and Ordering

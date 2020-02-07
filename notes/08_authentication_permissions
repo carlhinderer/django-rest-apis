@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------
+CHAPTER 8 - SECURING THE API WITH AUTHENTICATION & PERMISSIONS
+-------------------------------------------------------------------------
+
+- Understanding Authentication and Permissions in Django, Django REST, and RESTful Web Services
+
+- Learning About the Authentication Classes
+
+- Including Security and Permissions-Related Data to Models
+
+
+- Working with Object-Level Permissions via Customized Permission Classes
+
+- Saving Information About Users that Make Requests
+
+- Setting Permission Policies
+
+- Creating the Superuser for Django
+
+- Creating a User for Django
+
+
+- Making Authenticated Requests
+
+- Making Authenticated HTTP PATCH Requests with Postman
+
+- Browsing the Secure API with the Required Authentication
+
+- Working with Token-Based Authentication
+
+- Generating and Using Tokens
