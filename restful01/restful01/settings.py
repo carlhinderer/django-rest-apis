@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
+    
     'toys.apps.ToysConfig',
     'drones.apps.DronesConfig'
 ]
@@ -79,9 +81,9 @@ WSGI_APPLICATION = 'restful01.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'drones',
-        'USER': 'dronesuser',
-        'PASSWORD': 'dronespw',
+        'NAME': 'restful01',
+        'USER': 'restful01user',
+        'PASSWORD': 'restful01pw',
         'HOST': 'localhost',
         'PORT': '5432',
     }

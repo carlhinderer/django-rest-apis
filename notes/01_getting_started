@@ -54,11 +54,11 @@ CHAPTER 1 - GETTING STARTED
 - Creating a project and app
 
     # Command to create new project 'restful01'
-    python environments/hillar/bin/django-admin.py startproject restful01
+    $ python environments/hillar/bin/django-admin.py startproject restful01
 
     # Command to create a new app 'toys' in the 'restful01' project
-    cd restful01
-    python manage.py startapp toys
+    $ cd restful01
+    $ python manage.py startapp toys
 
 
     Here are the files in the 'toys' app:
