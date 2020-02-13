@@ -5,7 +5,7 @@ CHAPTER 4 - USING GENERALIZED BEHAVIOR FROM THE APIVIEW CLASS
 - Taking Advantage of Model Serializers
 
     - We can use leverage the fact that the 'rest_framework.serializers.ModelSerializer'
-        automatically populates default vales and default validators, along with providing
+        automatically populates default values and default validators, along with providing
         default implementations for the 'create' and 'update' methods.
 
       We'll subclass our serializer from this class instead of 'serializers.Serializer' to 

@@ -29,7 +29,9 @@ CHAPTER 5 - THE BROWSABLE API FEATURE
         Content-Type: text/html; charset=utf-8
 
 
-    - By default, the BrowsableAPIRenderer class uses the Bootstrap frontend component library.
+    - By default, the BrowsableAPIRenderer class uses the Bootstrap frontend 
+        component library.
 
 
-    - We can make GET, POST, PUT, DELETE, and OPTIONS requests from the browsable API.
+    - We can make GET, POST, PUT, DELETE, and OPTIONS requests from the browsable 
+        API.  The web interface provided makes testing easy.

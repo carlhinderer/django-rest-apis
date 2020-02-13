@@ -1,5 +1,3 @@
-from django.shortcuts import render 
-
 from rest_framework import status 
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response 
@@ -16,7 +14,7 @@ def toy_list(request):
         return Response(toys_serializer.data) 
  
     elif request.method == 'POST': 
-        toy_serializer = ToySerializer(data=request.data) 
+        toy_serializer = ToySerializer(data=request.data)
         if toy_serializer.is_valid(): 
             toy_serializer.save() 
             return Response(toy_serializer.data, status=status.HTTP_201_CREATED) 
