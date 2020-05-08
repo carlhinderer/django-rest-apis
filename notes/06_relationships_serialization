@@ -21,15 +21,16 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
     - Here are the operations we will support:
 
-        HTTP verb       Scope                               Semantics
-        ---------------------------------------------------------------------------------------------------------------------------
-        GET             Drone category                      Retrieve a single drone category. The drone category must include a 
-                                                              list of URLs for each drone resource that belongs to the drone 
-                                                              category.
+        HTTP verb       Scope                              Semantics
+        -------------------------------------------------------------------------------------------------------------
+        GET             Drone category                     Retrieve a single drone category. The drone category must 
+                                                             include a list of URLs for each drone resource that
+                                                             belongs to the drone category.
 
-        GET             Collection of drone categories      Retrieve all the stored drone categories in the collection, sorted by 
-                                                              their name in ascending order. Each drone category must include a list 
-                                                              of URLs for each drone resource that belongs to the drone category.
+        GET             Collection of drone categories     Retrieve all the stored drone categories in the 
+                                                             collection, sorted by their name in ascending order. 
+                                                             Each drone category must include a list of URLs for 
+                                                             each drone resource that belongs to the drone category.
 
         POST            Collection of drone categories      Create a new drone category in the collection.
 

@@ -190,7 +190,7 @@ CHAPTER 3 - CREATING API VIEWS
                      localhost:8000/toys/4
 
         # Response to either
-            HTTP/1.0 200 OK
+        HTTP/1.0 200 OK
         Content-Length: 180
         Content-Type: application/json
         Date: Tue, 10 Oct 2017 17:06:43 GMT
