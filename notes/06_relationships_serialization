@@ -40,11 +40,12 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
         DELETE          Drone category                      Delete an existing drone category.
 
-        GET             Drone                               Retrieve a single drone. The drone must include its drone category 
-                                                              description.
+        GET             Drone                               Retrieve a single drone. The drone must include its 
+                                                              drone category description.
 
-        GET             Collection of drones                Retrieve all the stored drones in the collection, sorted by their name in 
-                                                              ascending order. Each drone must include its drone category description.
+        GET             Collection of drones                Retrieve all the stored drones in the collection, sorted
+                                                              by their name in ascending order. Each drone must 
+                                                              include its drone category description.
 
         POST            Collection of drones                Create a new drone in the collection.
 
@@ -54,16 +55,18 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
         DELETE          Drone                               Delete an existing drone.
 
-        GET             Pilot                               Retrieve a single pilot. The pilot must include a list of the registered 
-                                                              competitions, sorted by distance in descending order. The list must include 
-                                                              all the details for the competition in which the pilots and his related 
+        GET             Pilot                               Retrieve a single pilot. The pilot must include a list of
+                                                              the registered competitions, sorted by distance in 
+                                                              descending order. The list must include all the details
+                                                              for the competition in which the pilots and his related 
                                                               drone participated.
 
-        GET             Collection of pilots                Retrieve all the stored pilots in the collection, sorted by their name in 
-                                                              ascending order. Each pilot must include a list of the registered 
-                                                              competitions, sorted by distance in descending order. The list must include all 
-                                                              the details for the competition in which the pilot and his related drone 
-                                                              participated.
+        GET             Collection of pilots                Retrieve all the stored pilots in the collection, sorted 
+                                                              by their name in ascending order. Each pilot must 
+                                                              include a list of the registered competitions, sorted
+                                                              by distance in descending order. The list must include
+                                                              all the details for the competition in which the pilot
+                                                              and his related drone participated.
 
         POST            Collection of pilots                Create a new pilot in the collection.
 
@@ -73,15 +76,19 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
         DELETE          Pilot                               Delete an existing pilot.
 
-        GET             Competition                         Retrieve a single competition. The competition must include the pilot's name that 
-                                                              made the drone reach a specific distance and the drone's name.
+        GET             Competition                         Retrieve a single competition. The competition must
+                                                              include the pilot's name that made the drone reach a
+                                                              specific distance and the drone's name.
 
-        GET             Collection of competitions          Retrieve all the stored competitions in the collection, sorted by distance in 
-                                                              descending order. Each competition must include the pilot's name that made the 
-                                                              drone reach a specific distance and the drone's name.
+        GET             Collection of competitions          Retrieve all the stored competitions in the collection,
+                                                              sorted by distance in descending order. Each 
+                                                              competition must include the pilot's name that made 
+                                                              the drone reach a specific distance and the drone's
+                                                              name.
 
-        POST            Collection of competitions          Create a new competition in the collection. The competition must be related to 
-                                                              an existing pilot and an existing drone.
+        POST            Collection of competitions          Create a new competition in the collection. The
+                                                              competition must be related to an existing pilot and 
+                                                              an existing drone.
 
         PUT             Competition                         Update an existing competition.
 
