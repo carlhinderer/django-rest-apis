@@ -231,6 +231,22 @@ CHAPTER 6 - ADVANCED RELATIONSHIPS & SERIALIZATION
 
 
 
+- Understanding Model Specifications
+
+    - Looking closer at the 1-to-many relationship we are defining in the Drone model:
+
+        # In Drone model, we define the 1 drone category to many drones relationship
+        drone_category = models.ForeignKey(
+            DroneCategory,
+            related_name='drones',     # Creates backwards relation from DroneCategory to Drone
+            on_delete=models.CASCADE)
+
+
+    - The '__str__' method for a model is used by Django whenever a human-readable representation
+        of a model instance is needed.
+
+ 
+
 - Running Migrations that Generate Relationships
 
     - We're going to switch to using Postgres instead of SQLite.
